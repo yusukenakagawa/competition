@@ -25,21 +25,19 @@ for key in nxy:
     ny.append(y)
 
 correct_diff = []
-for i in range(m):
-    x1, y1 = mx[i], my[i]
-    for j in range(i + 1, m):
-        x2, y2 = mx[j], my[j]
-        vec1 = x2 - x1, y2 - y1
-        diff = []
-        for k in range(n):
-            tx1, ty1 = nx[k], ny[k]
-            if (tx1 + vec1[0], ty1 + vec1[1]) in nxy:
-                diff = tx1 - x1, ty1 - y1
-                is_match = True
-                for l in range(m):
-                    if (mx[l] + diff[0], my[l] + diff[1]) not in nxy:
-                        is_match = False
-                if is_match:
-                    correct_diff = diff
-                    break
+x1, y1 = mx[0], my[0]
+x2, y2 = mx[1], my[1]
+vec1 = x2 - x1, y2 - y1
+diff = []
+for k in range(n):
+    tx1, ty1 = nx[k], ny[k]
+    if (tx1 + vec1[0], ty1 + vec1[1]) in nxy:
+        diff = tx1 - x1, ty1 - y1
+        is_match = True
+        for l in range(m):
+            if (mx[l] + diff[0], my[l] + diff[1]) not in nxy:
+                is_match = False
+        if is_match:
+            correct_diff = diff
+            break
 print(f"{correct_diff[0]} {correct_diff[1]}")
